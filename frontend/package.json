@@ -1,0 +1,56 @@
+{
+  "name": "fastapi",
+  "version": "1.0.0",
+  "description": "Task manager",
+  "main": "index.js",
+  "simple-git-hooks": {
+    "pre-push": "npm run lint"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all",
+    "not < 0.25%"
+  ],
+  "scripts": {
+    "lint": "eslint src/",
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inasekin/college-internship-oop.git"
+  },
+  "author": "Ivan Nasekin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inasekin/college-internship-oop/issues"
+  },
+  "homepage": "https://github.com/inasekin/college-internship-oop#readme",
+  "devDependencies": {
+    "@babel/core": "7.20.2",
+    "@babel/preset-env": "7.20.2",
+    "babel-loader": "9.1.0",
+    "copy-webpack-plugin": "11.0.0",
+    "css-loader": "6.7.2",
+    "eslint": "8.28.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "nanoid": "4.0.0",
+    "simple-git-hooks": "2.8.1",
+    "style-loader": "3.3.1",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.0",
+    "webpack-dev-server": "4.11.1"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "dependencies": {
+    "dayjs": "1.11.6",
+    "flatpickr": "4.6.13",
+    "he": "1.2.0",
+    "lodash": "4.17.21",
+    "prettier": "2.8.1"
+  }
+}
