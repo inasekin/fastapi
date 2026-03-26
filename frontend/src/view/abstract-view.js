@@ -4,12 +4,13 @@ const SHAKE_ANIMATION_TIMEOUT = 600;
 
 export default class AbstractView {
   #element = null;
+
   _callback = {};
 
   constructor() {
     if (new.target === AbstractView) {
       throw new Error(
-        'Невозможно инстанцировать AbstractView, только конкретный.'
+        'Невозможно инстанцировать AbstractView, только конкретный.',
       );
     }
   }

@@ -1,6 +1,8 @@
 import TaskView from '../view/task-view.js';
 import TaskEditView from '../view/task-edit-view.js';
-import { render, RenderPosition, replace, remove } from '../utils/render.js';
+import {
+  render, RenderPosition, replace, remove,
+} from '../utils/render.js';
 import { UserAction, UpdateType } from '../utils/constants.js';
 
 const Mode = {
@@ -10,13 +12,17 @@ const Mode = {
 
 export default class TaskPresenter {
   #taskListContainer = null;
+
   #changeData = null;
+
   #changeMode = null;
 
   #taskComponent = null;
+
   #taskEditComponent = null;
 
   #task = null;
+
   #mode = Mode.DEFAULT;
 
   constructor(taskListContainer, changeData, changeMode) {
@@ -42,7 +48,7 @@ export default class TaskPresenter {
       render(
         this.#taskListContainer,
         this.#taskComponent,
-        RenderPosition.BEFOREEND
+        RenderPosition.BEFOREEND,
       );
       return;
     }

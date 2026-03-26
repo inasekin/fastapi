@@ -33,10 +33,10 @@ const apiFetch = async (path, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
   if (
-    options.body &&
-    typeof options.body === 'object' &&
-    !(options.body instanceof FormData) &&
-    !(options.body instanceof URLSearchParams)
+    options.body
+    && typeof options.body === 'object'
+    && !(options.body instanceof FormData)
+    && !(options.body instanceof URLSearchParams)
   ) {
     headers['Content-Type'] = 'application/json';
     options.body = JSON.stringify(options.body);
@@ -60,11 +60,10 @@ const apiFetch = async (path, options = {}) => {
   return data;
 };
 
-export const register = (username, password) =>
-  apiFetch('/auth/register', {
-    method: 'POST',
-    body: { username, password },
-  });
+export const register = (username, password) => apiFetch('/auth/register', {
+  method: 'POST',
+  body: { username, password },
+});
 
 export const login = async (username, password) => {
   const body = new URLSearchParams();
@@ -106,10 +105,8 @@ export const topPriorityTasks = (n) => {
   return apiFetch(`/tasks/top-priority?${params.toString()}`);
 };
 
-export const createTask = (payload) =>
-  apiFetch('/tasks', { method: 'POST', body: payload });
+export const createTask = (payload) => apiFetch('/tasks', { method: 'POST', body: payload });
 
-export const updateTask = (id, payload) =>
-  apiFetch(`/tasks/${id}`, { method: 'PATCH', body: payload });
+export const updateTask = (id, payload) => apiFetch(`/tasks/${id}`, { method: 'PATCH', body: payload });
 
 export const deleteTask = (id) => apiFetch(`/tasks/${id}`, { method: 'DELETE' });

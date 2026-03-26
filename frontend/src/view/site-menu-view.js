@@ -1,8 +1,7 @@
 import AbstractView from './abstract-view.js';
 import { MenuItem } from '../utils/constants.js';
 
-const createSiteMenuTemplate = () =>
-  `<div class="control__btn-wrap">
+const createSiteMenuTemplate = () => `<div class="control__btn-wrap">
     <input
       type="radio"
       name="control"

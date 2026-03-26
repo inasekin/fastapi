@@ -3,7 +3,7 @@ import KanbanBoardView from '../view/kanban-board-view.js';
 import BoardToolbarView from '../view/board-toolbar-view.js';
 import TaskPresenter from './task-presenter.js';
 import TaskNewPresenter from './task-new-presenter.js';
-import { render, RenderPosition, remove } from '../utils/render.js';
+import { render, RenderPosition } from '../utils/render.js';
 import { UpdateType, UserAction } from '../utils/constants.js';
 import * as api from '../services/api.js';
 
@@ -11,18 +11,27 @@ const VALID_STATUSES = new Set(['pending', 'in_progress', 'completed']);
 
 export default class BoardPresenter {
   #boardContainer = null;
+
   #tasksModel = null;
 
   #boardComponent = new BoardView();
+
   #kanbanComponent = new KanbanBoardView();
+
   #toolbarComponent = new BoardToolbarView();
+
   #taskPresenter = new Map();
+
   #taskNewPresenter = null;
 
   #viewMode = 'list';
+
   #searchQuery = '';
+
   #topN = 5;
+
   #sortBy = 'created_at';
+
   #order = 'desc';
 
   constructor(boardContainer, tasksModel) {
@@ -42,17 +51,17 @@ export default class BoardPresenter {
     render(
       this.#boardContainer,
       this.#boardComponent,
-      RenderPosition.BEFOREEND
+      RenderPosition.BEFOREEND,
     );
     render(
       this.#boardComponent,
       this.#toolbarComponent,
-      RenderPosition.BEFOREEND
+      RenderPosition.BEFOREEND,
     );
     render(
       this.#boardComponent,
       this.#kanbanComponent,
-      RenderPosition.BEFOREEND
+      RenderPosition.BEFOREEND,
     );
 
     this.#taskNewPresenter.setBoardView(this.#boardComponent);
@@ -117,8 +126,8 @@ export default class BoardPresenter {
     this.#taskPresenter.forEach((presenter) => presenter.resetView());
   };
 
-  #handleViewAction = (actionType, _updateType, update) =>
-    this.#handleViewActionAsync(actionType, update);
+  // eslint-disable-next-line max-len
+  #handleViewAction = (actionType, _updateType, update) => this.#handleViewActionAsync(actionType, update);
 
   #handleViewActionAsync = async (actionType, update) => {
     try {
@@ -179,7 +188,7 @@ export default class BoardPresenter {
     const taskPresenter = new TaskPresenter(
       listEl,
       this.#handleViewAction,
-      this.#handleModeChange
+      this.#handleModeChange,
     );
     taskPresenter.init(task);
     this.#taskPresenter.set(task.id, taskPresenter);
@@ -200,7 +209,7 @@ export default class BoardPresenter {
   };
 
   #renderBoard = () => {
-    const tasks = this.tasks;
+    const { tasks } = this;
     this.#renderTasks(tasks);
   };
 }

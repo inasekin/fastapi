@@ -14,14 +14,14 @@ const BLANK_TASK = {
   priority: 0,
 };
 
-const createStatusOptions = (current) =>
-  STATUS_OPTIONS.map(
-    (o) =>
-      `<option value="${o.value}" ${current === o.value ? 'selected' : ''}>${he.encode(o.label)}</option>`
-  ).join('');
+const createStatusOptions = (current) => STATUS_OPTIONS.map(
+  (o) => `<option value="${o.value}" ${current === o.value ? 'selected' : ''}>${he.encode(o.label)}</option>`,
+).join('');
 
 const createTaskEditTemplate = (data) => {
-  const { title, description, status, priority } = data;
+  const {
+    title, description, status, priority,
+  } = data;
 
   return `<article class="card card--edit card--glass">
     <form class="card__form" method="get">

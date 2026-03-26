@@ -4,14 +4,23 @@ import { UserAction, UpdateType } from '../utils/constants.js';
 
 export default class TaskNewPresenter {
   #changeData;
+
   #taskEditComponent = null;
+
   #destroyCallback = null;
+
   #modal = null;
+
   #modalBody = null;
+
   #backdrop = null;
+
   #closeBtn = null;
+
   #dialog = null;
+
   #boundBackdrop = null;
+
   #boundClose = null;
 
   constructor(changeData) {
@@ -61,7 +70,7 @@ export default class TaskNewPresenter {
     render(
       this.#modalBody,
       this.#taskEditComponent,
-      RenderPosition.BEFOREEND
+      RenderPosition.BEFOREEND,
     );
 
     document.addEventListener('keydown', this.#escKeyDownHandler);

@@ -8,8 +8,7 @@ export const RenderPosition = {
 };
 
 export const render = (container, element, place) => {
-  const parent =
-    container instanceof AbstractView ? container.element : container;
+  const parent = container instanceof AbstractView ? container.element : container;
   const child = element instanceof AbstractView ? element.element : element;
 
   switch (place) {
@@ -24,6 +23,8 @@ export const render = (container, element, place) => {
       break;
     case RenderPosition.AFTEREND:
       parent.after(child);
+      break;
+    default:
       break;
   }
 };
@@ -50,10 +51,8 @@ export const replace = (newElement, oldElement) => {
     throw new Error('Невозможно заменить несуществующие элементы');
   }
 
-  const newChild =
-    newElement instanceof AbstractView ? newElement.element : newElement;
-  const oldChild =
-    oldElement instanceof AbstractView ? oldElement.element : oldElement;
+  const newChild = newElement instanceof AbstractView ? newElement.element : newElement;
+  const oldChild = oldElement instanceof AbstractView ? oldElement.element : oldElement;
 
   const parent = oldChild.parentElement;
 

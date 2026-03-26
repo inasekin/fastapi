@@ -11,8 +11,7 @@ const formatCreated = (iso) => {
 
 const VALID_STATUS = new Set(['pending', 'in_progress', 'completed']);
 
-const normalizeStatus = (status) =>
-  VALID_STATUS.has(status) ? status : 'pending';
+const normalizeStatus = (status) => (VALID_STATUS.has(status) ? status : 'pending');
 
 const createTaskTemplate = (task) => {
   const {

@@ -7,3 +7,19 @@ env:
   browser: true
 
 extends: 'airbnb-base'
+
+rules:
+  # MVP-паттерн использует _callback, _data, _notify в базовых классах
+  no-underscore-dangle: 'off'
+  # Браузерные ES-модули требуют явного .js в импортах
+  import/extensions: 'off'
+  # void используется намеренно для fire-and-forget промисов
+  no-void: 'off'
+  # mock/task.js использует nanoid из devDependencies (файл не в prod-сборке)
+  import/no-extraneous-dependencies: 'off'
+  # Абстрактные методы в базовых классах не используют this намеренно
+  class-methods-use-this: 'off'
+  # apiFetch мутирует options.body намеренно (сериализация тела запроса)
+  no-param-reassign: ['error', { props: false }]
+  # Взаимный импорт render ↔ abstract-view — намеренная архитектура MVP
+  import/no-cycle: 'off'
