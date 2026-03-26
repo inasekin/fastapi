@@ -2,7 +2,7 @@ UV ?= uv
 BACKEND_DIR := backend
 FRONTEND_DIR := frontend
 
-.PHONY: help install install-backend install-frontend dev-backend dev-frontend lint-frontend build-frontend run-backend-prod clean lock-backend
+.PHONY: help install install-backend install-frontend dev-backend dev-frontend lint-backend format-backend lint-frontend build-frontend run-backend-prod clean lock-backend
 
 help:
 	@echo "Цели:"
@@ -12,6 +12,8 @@ help:
 	@echo "  make dev-frontend       — UI http://127.0.0.1:8080"
 	@echo "  make build-frontend     — сборка frontend/build"
 	@echo "  make run-backend-prod   — uvicorn без reload"
+	@echo "  make lint-backend       — ruff check"
+	@echo "  make format-backend     — ruff format"
 	@echo "  make lint-frontend      — eslint"
 	@echo "  make clean              — .venv, node_modules, tasks.db"
 
@@ -37,6 +39,12 @@ build-frontend:
 
 run-backend-prod:
 	cd $(BACKEND_DIR) && $(UV) run uvicorn app.main:app --host 127.0.0.1 --port 8000
+
+lint-backend:
+	cd $(BACKEND_DIR) && $(UV) run ruff check app/
+
+format-backend:
+	cd $(BACKEND_DIR) && $(UV) run ruff format app/
 
 lint-frontend:
 	cd $(FRONTEND_DIR) && npm run lint
