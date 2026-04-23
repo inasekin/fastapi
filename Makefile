@@ -2,7 +2,7 @@ UV ?= uv
 BACKEND_DIR := backend
 FRONTEND_DIR := frontend
 
-.PHONY: help install install-backend install-frontend dev-backend dev-frontend lint-backend format-backend lint-frontend build-frontend run-backend-prod clean lock-backend
+.PHONY: help install install-backend install-frontend dev-backend dev-frontend lint-backend format-backend lint-frontend build-frontend run-backend-prod clean lock-backend test test-cov test-html
 
 help:
 	@echo "Цели:"
@@ -15,6 +15,9 @@ help:
 	@echo "  make lint-backend       — ruff check"
 	@echo "  make format-backend     — ruff format"
 	@echo "  make lint-frontend      — eslint"
+	@echo "  make test               — pytest"
+	@echo "  make test-cov           — coverage report в терминале"
+	@echo "  make test-html          — coverage HTML backend/htmlcov/"
 	@echo "  make clean              — .venv, node_modules, tasks.db"
 
 install: install-backend install-frontend
@@ -48,6 +51,16 @@ format-backend:
 
 lint-frontend:
 	cd $(FRONTEND_DIR) && npm run lint
+
+test:
+	cd $(BACKEND_DIR) && $(UV) run pytest tests/ -v
+
+test-cov:
+	cd $(BACKEND_DIR) && $(UV) run coverage run -m pytest tests/ && $(UV) run coverage report
+
+test-html:
+	cd $(BACKEND_DIR) && $(UV) run coverage run -m pytest tests/ && $(UV) run coverage html
+	@echo "Отчёт: backend/htmlcov/index.html"
 
 clean:
 	rm -rf $(BACKEND_DIR)/.venv $(FRONTEND_DIR)/node_modules $(BACKEND_DIR)/tasks.db

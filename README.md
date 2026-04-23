@@ -38,3 +38,18 @@ make install
 make dev-backend    # API: http://127.0.0.1:8000
 make dev-frontend   # UI:  http://127.0.0.1:8080
 ```
+
+## Запуск тестов
+
+```bash
+make test
+```
+
+Покрытие и отчеты
+
+```bash
+make test-cov  
+```
+```bash
+make test-html
+```
